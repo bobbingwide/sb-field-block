@@ -1,0 +1,15 @@
+{
+	"apiVersion": 2,
+	"name": "oiksb/sb-field-block",
+	"title": "Field block",
+	"category": "text",
+	"icon": "info-outline",
+	"description": "Displays a post meta data field",
+	"supports": {
+		"html": false
+	},
+	"textdomain": "sb-field-block",
+	"editorScript": "file:./build/index.js",
+	"editorStyle": "file:./build/index.css",
+	"style": "file:./build/style-index.css"
+}
