@@ -31,6 +31,14 @@ registerBlockType( 'oiksb/sb-field-block', {
 	 */
 	apiVersion: 2,
 
+	attributes: {
+		seenBefore: {
+			type: 'string',
+			source: 'meta',
+			meta: '_seen_before'
+		},
+	},
+
 	/**
 	 * @see ./edit.js
 	 */

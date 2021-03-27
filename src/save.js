@@ -23,12 +23,8 @@ import { useBlockProps } from '@wordpress/block-editor';
  * @return {WPElement} Element to render.
  */
 export default function save() {
-	return (
-		<p { ...useBlockProps.save() }>
-			{ __(
-				'Field block – hello from the saved content!',
-				'sb-field-block'
-			) }
-		</p>
-	);
+	// No information saved to the block
+	// Data is saved to post meta via the hook
+	return null;
+
 }

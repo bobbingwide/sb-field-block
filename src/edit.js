@@ -12,6 +12,9 @@ import { __ } from '@wordpress/i18n';
  * @see https://developer.wordpress.org/block-editor/packages/packages-block-editor/#useBlockProps
  */
 import { useBlockProps } from '@wordpress/block-editor';
+import { TextControl } from '@wordpress/components';
+import { useSelect } from '@wordpress/data';
+import { useEntityProp } from '@wordpress/core-data';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -29,10 +32,35 @@ import './editor.scss';
  *
  * @return {WPElement} Element to render.
  */
-export default function Edit() {
-	return (
-		<p { ...useBlockProps() }>
-			{ __( 'Field block – hello from the editor!', 'sb-field-block' ) }
-		</p>
+export default function Edit( { setAttributes, attributes } ) {
+	const blockProps = useBlockProps();
+	const postType = useSelect(
+		( select ) => select( 'core/editor' ).getCurrentPostType(),
+		[]
 	);
+	const [ meta, setMeta ] = useEntityProp(
+		'postType',
+		postType,
+		'meta'
+	);
+	const metaFieldValue = meta['_seen_before'];
+	function updateMetaValue( newValue ) {
+		setMeta( { ...meta, '_seen_before': newValue } );
+	}
+	console.log( attributes.seenBefore);
+
+	var times = ( '1' === attributes.seenBefore ) ? 'time' : 'times';
+
+	return (
+			<div { ...blockProps }>
+				<TextControl
+					label="Seen before:"
+					value={ metaFieldValue }
+					onChange={ updateMetaValue }
+				/>
+				<p>Seen before: {attributes.seenBefore} {times}</p>
+			</div>
+		);
+
+
 }
