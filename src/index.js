@@ -17,6 +17,7 @@ import './style.scss';
 /**
  * Internal dependencies
  */
+
 import Edit from './edit';
 import save from './save';
 
@@ -31,13 +32,16 @@ registerBlockType( 'oiksb/sb-field-block', {
 	 */
 	apiVersion: 2,
 
+
 	attributes: {
-		seenBefore: {
+		fieldName: {
 			type: 'string',
-			source: 'meta',
-			meta: '_seen_before'
+			default: '',
 		},
 	},
+
+
+
 
 	/**
 	 * @see ./edit.js
