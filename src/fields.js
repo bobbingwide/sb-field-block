@@ -19,44 +19,87 @@ export class Fields extends Component {
 		 */
 		this.state = {
 			fields: [],
+			fieldsSet: false,
+			loading: false,
 
 		};
 		//console.log( this.state);
 		//console.log( this );
 	}
 
+	/**
+	 * This should vary depending on the active post type.
+	 *
+	 * @TODO No idea how this should work in the Site Editor which needs to know the post type you've picked.
+	 *
+	 * @returns {string}
+	 */
+	getPath() {
+		var postType = wp.data.select('core/editor').getCurrentPostType();
+		console.log( postType);
+		return '/wp/v2/' + postType;
+
+	}
+
 	componentDidMount() {
-		const unsubscribe = subscribe( () => {
-			wp.apiFetch( { path: '/wp/v2/posts', 'method': 'OPTIONS'} )
-					.then( data => {
-							console.log( 'response:', data );
+		//var fields = this.state.fields;
+		console.log( 'Fields::componentDidMount' );
+		if ( this.state.fieldsSet ) {
+			// That's OK then?
+			console.log("Fields:", fields);
+
+		} else if ( false === this.state.loading ) {
+			this.setState( { loading: true });
+			const unsubscribe = subscribe(() => {
+				var path = this.getPath();
+				console.log( "path", path);
+				wp.apiFetch({path: path, 'method': 'OPTIONS'})
+					.then(data => {
+							console.log('response:', data);
 							//var routes = data['routes'];
 							//var post_route = data['routes']['/wp/v2/posts'];
 							var properties = data['endpoints'][1]['args']['meta']['properties'];
-							console.log( properties );
-							var propertyNames = Object.getOwnPropertyNames( properties);
-							console.log( propertyNames );
-							var fields = this.getFieldsMapping( propertyNames, properties );
-							this.setState( {fields}  );
+							console.log(properties);
+							var propertyNames = Object.getOwnPropertyNames(properties);
+							console.log(propertyNames);
+							var fields = this.getFieldsMapping(propertyNames, properties);
+							this.setState({fields});
+							console.log( this.state );
+							this.setState( {fieldsSet: true, loading: false});
+							console.log( this.state );
 
 
 						}
 					);
-		});
-	}
-
-	propertyMap( property, properties ) {
-		return { 'slug': property, 'name': properties[property]['description']};
+			});
+		}
 	}
 
 	/**
-	 * Maps field names to property names
+	 * Returns the mapping of Field names to descriptions.
+	 *
+	 * If there's no description we set it to the property.
+	 * This happens for _genesis* theme fields.
+	 * 	 *
+	 * @param property
+	 * @param properties
+	 * @returns {{name: *, slug}}
+	 */
+	propertyMap( property, properties ) {
+		var name = properties[property]['description'];
+		if ( "" === name ) {
+			name = property;
+		}
+		return { 'slug': property, 'name': name };
+	}
+
+	/**
+	 * Maps field names to property names.
 	 *
 	 * @param propertyNames
 	 * @param properties
 	 * @returns {*}
 	 */
-
 	getFieldsMapping( propertyNames, properties ) {
 		console.log( propertyNames);
 		console.log( properties );
@@ -91,6 +134,7 @@ export class Fields extends Component {
 				/>
 			);
 		} else {
+			console.log( "Loading field list");
 			return( <p>Loading field list</p>);
 		}
 	}
