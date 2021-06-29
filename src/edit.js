@@ -18,8 +18,9 @@ import { useEntityProp } from '@wordpress/core-data';
 //import { apiFetch } from '@wordpress/data-controls';
 import { Fragment } from '@wordpress/element';
 
-import { Fields } from './fields';
+///import { Fields } from './fields';
 import { FieldSelect } from './field';
+import { PostTypeSelect } from './post_type';
 import { Store } from './store';
 
 /**
@@ -49,7 +50,7 @@ export default function Edit( { setAttributes, attributes } ) {
 		postType,
 		'meta'
 	);
-	console.log(attributes);
+	console.log(meta);
 
 	const onChangeFieldName = (value) => {
 		//attributes = getAttributes( value );
@@ -57,29 +58,26 @@ export default function Edit( { setAttributes, attributes } ) {
 	}
 
 	//if ("" != attributes.fieldName) {
-		const metaFieldValue = ( "" != attributes.fieldName) ? meta[attributes.fieldName] : 'Please set Field name';
+		const metaFieldValue = ( meta && "" != attributes.fieldName) ? meta[attributes.fieldName] : 'Please set Field name';
 	//
 	function updateMetaValue( newValue ) {
 		setMeta( { ...meta, [attributes.fieldName]: newValue } );
 	}
 
-	function updatePostType( newValue ) {
+	function onChangePostType( newValue ) {
 		setAttributes({postType: newValue});
 
 	}
-	//console.log( attributes.seenBefore);
-
-
-	//var times = ( '1' === attributes.seenBefore ) ? 'time' : 'times';
-
-	// const stuff = getMetaFields();
-	//const stuffAlt = getMetaFieldsAlt();
-// 	var fieldList = Fields.fieldList();
 
 	return (
 		<Fragment>
 
 			<InspectorControls>
+				<PanelBody>
+					<PanelRow>
+						<PostTypeSelect value={attributes.postType} onChange={onChangePostType} />
+					</PanelRow>
+				</PanelBody>
 				<PanelBody>
 					<PanelRow>
 					<FieldSelect value={attributes.fieldName} onChange={onChangeFieldName} />
@@ -90,7 +88,7 @@ export default function Edit( { setAttributes, attributes } ) {
 				<TextControl
 					label={"Post Type: " + attributes.postType}
 					value={ attributes.postType }
-					onChange={ updatePostType }
+					onChange={ onChangePostType }
 				/>
 				<TextControl
 					label={"Field Name: " + attributes.fieldName}
