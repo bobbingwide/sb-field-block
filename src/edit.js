@@ -19,6 +19,8 @@ import { useEntityProp } from '@wordpress/core-data';
 import { Fragment } from '@wordpress/element';
 
 import { Fields } from './fields';
+import { FieldSelect } from './field';
+import { Store } from './store';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -60,6 +62,11 @@ export default function Edit( { setAttributes, attributes } ) {
 	function updateMetaValue( newValue ) {
 		setMeta( { ...meta, [attributes.fieldName]: newValue } );
 	}
+
+	function updatePostType( newValue ) {
+		setAttributes({postType: newValue});
+
+	}
 	//console.log( attributes.seenBefore);
 
 
@@ -75,13 +82,18 @@ export default function Edit( { setAttributes, attributes } ) {
 			<InspectorControls>
 				<PanelBody>
 					<PanelRow>
-					<Fields value={attributes.fieldName} onChange={onChangeFieldName} />
+					<FieldSelect value={attributes.fieldName} onChange={onChangeFieldName} />
 					</PanelRow>
 				</PanelBody>
 			</InspectorControls>
 			<div { ...blockProps }>
 				<TextControl
-					label="Field Name: {attributes.fieldName}"
+					label={"Post Type: " + attributes.postType}
+					value={ attributes.postType }
+					onChange={ updatePostType }
+				/>
+				<TextControl
+					label={"Field Name: " + attributes.fieldName}
 					value={ metaFieldValue }
 					onChange={ updateMetaValue }
 				/>
