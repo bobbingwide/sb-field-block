@@ -38,6 +38,10 @@ registerBlockType( 'oiksb/sb-field-block', {
 			type: 'string',
 			default: '',
 		},
+		postType: {
+			type: 'string',
+			default: '',
+		}
 	},
 
 
