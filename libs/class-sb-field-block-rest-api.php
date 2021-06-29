@@ -26,6 +26,7 @@ class SB_Field_Block_Rest_Api
 		//echo "Registering routes for sb_field_block";
 		$args = ['methods' => 'GET',
 				'callback' => [ $this, 'get_fields'],
+				'permission_callback' => '__return_true',
 				'args'
 				];
 		register_rest_route( 'oiksb/v1',
@@ -69,7 +70,9 @@ class SB_Field_Block_Rest_Api
 					$fields[] = $field;
 				}
 			}
-			$all_fields[] = [$object_type => $fields];
+			if ( count( $fields)) {
+				$all_fields[] =  ['postType' => $object_type, 'fields' => $fields];
+			}
 
 		}
 		return $all_fields;
@@ -87,8 +90,9 @@ class SB_Field_Block_Rest_Api
 	function get_rest_field( $object_type, $field_name ) 	{
 		$field = null;
 		if ( $this->is_rest_field($object_type, $field_name) ) {
-			$field = [];
-			$field[$field_name] = $this->get_field_definition($field_name);
+			$fieldn = [];
+			$fieldn['name'] = $field_name;
+			$field = array_merge( $fieldn, $this->get_field_definition($field_name) );
 		}
 		return $field;
 	}
