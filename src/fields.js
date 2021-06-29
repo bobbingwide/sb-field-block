@@ -12,9 +12,7 @@ export class Fields extends Component {
 	constructor() {
 		super( ...arguments );
 
-		/** Each field consists of a slug and name.
-		 * Where slug is the post meta key
-		 * and name is the description
+		/**
 		 * @type {{fields: []}}
 		 */
 		this.state = {
@@ -35,9 +33,10 @@ export class Fields extends Component {
 	 * @returns {string}
 	 */
 	getPath() {
-		var postType = wp.data.select('core/editor').getCurrentPostType();
-		console.log( postType);
-		return '/wp/v2/' + postType;
+		//var postType = wp.data.select('core/editor').getCurrentPostType();
+		//console.log( postType);
+		//return '/wp/v2/' + postType;
+		return '/oiksb/v1/fields';
 
 	}
 
@@ -53,19 +52,20 @@ export class Fields extends Component {
 			const unsubscribe = subscribe(() => {
 				var path = this.getPath();
 				console.log( "path", path);
-				wp.apiFetch({path: path, 'method': 'OPTIONS'})
+				wp.apiFetch({path: path, 'method': 'GET'})
 					.then(data => {
 							console.log('response:', data);
+
 							//var routes = data['routes'];
 							//var post_route = data['routes']['/wp/v2/posts'];
-							var properties = data['endpoints'][1]['args']['meta']['properties'];
-							console.log(properties);
-							var propertyNames = Object.getOwnPropertyNames(properties);
-							console.log(propertyNames);
-							var fields = this.getFieldsMapping(propertyNames, properties);
-							this.setState({fields});
-							console.log( this.state );
-							this.setState( {fieldsSet: true, loading: false});
+							//var properties = data['endpoints'][1]['args']['meta']['properties'];
+							//console.log(properties);
+							//var propertyNames = Object.getOwnPropertyNames(properties);
+							//console.log(propertyNames);
+							//var fields = this.getFieldsMapping(propertyNames, properties);
+							//this.setState({fields});
+							//console.log( this.state );
+							this.setState( {fieldsSet: true, loading: false, fields: data});
 							console.log( this.state );
 
 
