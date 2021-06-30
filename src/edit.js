@@ -80,7 +80,7 @@ export default function Edit( { setAttributes, attributes } ) {
 				</PanelBody>
 				<PanelBody>
 					<PanelRow>
-					<FieldSelect value={attributes.fieldName} onChange={onChangeFieldName} />
+					<FieldSelect value={attributes.fieldName} onChange={onChangeFieldName} postType={attributes.postType} />
 					</PanelRow>
 				</PanelBody>
 			</InspectorControls>
