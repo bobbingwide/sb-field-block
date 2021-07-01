@@ -28,6 +28,7 @@ export const PostTypeSelect = ( props ) => {
 	}, []);
 	console.log("PostTypeSelect");
 	console.log(postTypes);
+	console.log( props);
 	console.log("PT after");
 	if (postTypes && postTypes.length) {
 		var options = postTypes.map((postType) => postTypeOption(postType));
@@ -35,7 +36,7 @@ export const PostTypeSelect = ( props ) => {
 		var options = [{ value: '', label: 'Wait for it...' }];
 	}
 	return (
-		<SelectControl label="Post Type" value={props.postType}
+		<SelectControl label="Post Type" value={props.value}
 					   options={options}
 					   onChange={props.onChange}
 		/>
