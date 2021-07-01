@@ -92,7 +92,7 @@ export default function Edit( { setAttributes, attributes } ) {
 				</PanelBody>
 			</InspectorControls>
 			<div { ...blockProps }>
-				<DisplayMetaControl postType={attributes.postType} fieldName={attributes.fieldName} fieldValue={metaFieldValue} />
+				<DisplayMetaControl postType={attributes.postType} fieldName={attributes.fieldName} fieldValue={metaFieldValue} attributes={attributes} />
 
 			</div>
 		</Fragment>

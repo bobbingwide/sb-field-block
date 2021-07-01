@@ -72,6 +72,9 @@ class SB_Field_Block {
 	function render_oik_field() {
 		//oik_require_lib( 'bw_fields');
 		oik_require( 'shortcodes/oik-fields.php', 'oik-fields');
+		if ( function_exists( "oik_is_block_renderer") ) {
+			oik_is_block_renderer( true );
+		}
 		$atts = ['fields' => $this->field_name];
 		$html = bw_metadata( $atts );
 		return $html;
