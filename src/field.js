@@ -54,16 +54,20 @@ function fieldOption( field ) {
 }
 
 
+
+
+
 export const FieldSelect = ( props ) => {
 	const content = useSelect( ( select ) => {
 		return select( 'oiksb/fields' ).getFields( props.type );
 	}, [ props.type ] );
 	console.log( "FieldSelect");
 	console.log( content );
+	console.log( props );
 	console.log( "FS after");
-	var options = fieldOptions( content,'oik-plugins' );
+	var options = fieldOptions( content,props.postType );
 	return(
-	<SelectControl label="Field" value={props.fieldName}
+	<SelectControl label="Field" value={props.value}
 				   options={options}
 				   onChange={ props.onChange}
 	/>
