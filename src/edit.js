@@ -22,6 +22,7 @@ import { Fragment } from '@wordpress/element';
 import { FieldSelect } from './field';
 import { PostTypeSelect } from './post_type';
 import { Store } from './store';
+import { DisplayMetaControl} from './display_meta';
 
 /**
  * Lets webpack process CSS, SASS or SCSS files referenced in JavaScript files.
@@ -41,17 +42,23 @@ import './editor.scss';
  */
 export default function Edit( { setAttributes, attributes } ) {
 	const blockProps = useBlockProps();
-	const postType = useSelect(
-		(select) => select('core/editor').getCurrentPostType(),
-		[]
-	);
-	const [meta, setMeta] = useEntityProp(
+	var postType = undefined;
+	if ( attributes.postType ) {
+		postType = attributes.postType;
+	} else {
+		postType = useSelect(
+			(select) => select('core/editor').getCurrentPostType(),
+			[]
+		);
+	}
+	var [meta, setMeta] = useEntityProp(
 		'postType',
 		postType,
 		'meta'
 	);
+	console.log( "Meta before");
 	console.log(meta);
-
+	console.log( "MA");
 	const onChangeFieldName = (value) => {
 		//attributes = getAttributes( value );
 		setAttributes({fieldName: value});
@@ -85,17 +92,7 @@ export default function Edit( { setAttributes, attributes } ) {
 				</PanelBody>
 			</InspectorControls>
 			<div { ...blockProps }>
-				<TextControl
-					label={"Post Type: " + attributes.postType}
-					value={ attributes.postType }
-					onChange={ onChangePostType }
-				/>
-				<TextControl
-					label={"Field Name: " + attributes.fieldName}
-					value={ metaFieldValue }
-					onChange={ updateMetaValue }
-				/>
-				<p>Field name: {attributes.fieldName}</p>
+				<DisplayMetaControl postType={attributes.postType} fieldName={attributes.fieldName} fieldValue={metaFieldValue} />
 
 			</div>
 		</Fragment>
