@@ -42,14 +42,16 @@ import './editor.scss';
  */
 export default function Edit( { setAttributes, attributes } ) {
 	const blockProps = useBlockProps();
+
 	var postType = undefined;
+	postType = useSelect(
+		(select) => select('core/editor').getCurrentPostType(),
+		[]
+	);
 	if ( attributes.postType ) {
 		postType = attributes.postType;
 	} else {
-		postType = useSelect(
-			(select) => select('core/editor').getCurrentPostType(),
-			[]
-		);
+	  // We've already found a value using select.
 	}
 	var [meta, setMeta] = useEntityProp(
 		'postType',
