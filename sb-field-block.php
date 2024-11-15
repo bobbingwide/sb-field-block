@@ -20,7 +20,8 @@
  */
 function oiksb_sb_field_block_block_init() {
 	$args = [ 'render_callback' => 'sb_field_block_dynamic_block'];
-	register_block_type_from_metadata( __DIR__, $args );
+	$registered = register_block_type_from_metadata( __DIR__ . '/src/sb-field-block', $args );
+	bw_trace2( $registered, "registered?", false );
 }
 add_action( 'init', 'oiksb_sb_field_block_block_init' );
 add_action( 'rest_api_init', 'oiksb_sb_field_block_rest_api_init');
