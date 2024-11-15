@@ -1,5 +1,5 @@
 {
-	"apiVersion": 2,
+	"apiVersion": 3,
 	"name": "oiksb/sb-field-block",
 	"title": "Field block",
 	"category": "text",
@@ -9,6 +9,14 @@
 		"html": false,
 	  	"className": false
 	},
+  	"attributes": {
+		"postType": {
+	  		"type": "string"
+		},
+		"fieldName": {
+	  		"type": "string"
+		}
+  	},
 	"textdomain": "sb-field-block",
 	"editorScript": "file:./build/index.js",
 	"editorStyle": "file:./build/index.css",

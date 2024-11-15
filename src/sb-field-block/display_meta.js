@@ -1,5 +1,5 @@
 import {useSelect} from "@wordpress/data";
-import { ServerSideRender} from '@wordpress/editor';
+import ServerSideRender from '@wordpress/server-side-render';
 
 function getFieldDescription( postType, fieldName ) {
 	var field = getField( postType, fieldName);
