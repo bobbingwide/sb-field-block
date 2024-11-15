@@ -1,4 +1,5 @@
 {
+	"$schema": "https://schemas.wp.org/trunk/block.json",
 	"apiVersion": 3,
 	"name": "oiksb/sb-field-block",
 	"title": "Field block",
@@ -18,8 +19,7 @@
 		}
   	},
 	"textdomain": "sb-field-block",
-	"editorScript": "file:./build/index.js",
-	"editorStyle": "file:./build/index.css",
-	"style": "file:./build/style-index.css",
-  	"render_callback": "sb_field_block_dynamic_block"
+	"editorScript": "file:../../build/sb-field-block.js",
+	"editorStyle": "file:./../build/sb-field-block.css",
+	"style": "file:../../build/style-sb-field-block.css"
 }

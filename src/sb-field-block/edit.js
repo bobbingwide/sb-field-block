@@ -53,6 +53,10 @@ export default function Edit( { setAttributes, attributes } ) {
 	} else {
 	  // We've already found a value using select.
 	}
+
+	// See https://developer.wordpress.org/block-editor/reference-guides/packages/packages-core-data/#useentityprop
+	// This retrieves the post metadata for the current post.
+	// The post type needs to support `custom-fields`
 	var [meta, setMeta] = useEntityProp(
 		'postType',
 		postType,
