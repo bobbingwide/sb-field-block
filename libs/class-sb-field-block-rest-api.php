@@ -1,7 +1,7 @@
 <?php
 /**
  * Class SB_Field_Block_Rest_Api
- * @copyright (C) Copyright Bobbing Wide 2021
+ * @copyright (C) Copyright Bobbing Wide 2021, 2024
  * @package sb-field-block
  */
 
@@ -14,7 +14,7 @@ class SB_Field_Block_Rest_Api
 	}
 
 	/**
-	 * Attempting to understand how to implement the the REST API to return information about
+	 * Attempting to understand how to implement the REST API to return information about
 	 * fields and their values.
 	 *
 	 * https://s.b/bigram/wp-json will return all the routes
