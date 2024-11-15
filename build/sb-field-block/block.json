@@ -1,0 +1,25 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "oiksb/sb-field-block",
+  "title": "Field block",
+  "category": "text",
+  "icon": "info-outline",
+  "description": "Displays a post meta data field",
+  "supports": {
+    "html": false,
+    "className": false
+  },
+  "attributes": {
+    "postType": {
+      "type": "string"
+    },
+    "fieldName": {
+      "type": "string"
+    }
+  },
+  "textdomain": "sb-field-block",
+  "editorScript": "file:../../build/sb-field-block.js",
+  "editorStyle": "file:./../build/sb-field-block.css",
+  "style": "file:../../build/style-sb-field-block.css"
+}
