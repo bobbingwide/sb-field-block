@@ -2,7 +2,7 @@
 /**
  * Plugin Name:     Field block
  * Description:     Displays a post meta data field
- * Version:         0.0.0
+ * Version:         0.0.1
  * Author:          bobbingwide
  * License:         GPL 3.0
  * License URI:     https://www.gnu.org/licenses/gpl-2.0.html

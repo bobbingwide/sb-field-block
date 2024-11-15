@@ -1,57 +1,97 @@
 === Field block ===
 Contributors:      bobbingwide
 Tags:              block
-Requires at least: 5.6.0
-Tested up to:      5.7.0
-Stable tag:        0.0.0
-Requires PHP:      7.0.0
+Requires at least: 6.6.0
+Tested up to:      6.7.0
+Stable tag:        0.0.1
+Requires PHP:      8.2.0
 License:           GPL 3.0
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
-Displays a post meta data field
+Displays a post meta data field in a block.
 
 == Description ==
 
-This is the long description. No limit, and you can use Markdown (as well as in the following sections).
+The Field block ( oiksb/sb-field-block ) displays post meta data for your post types.
+Use it replace [bw_fields] and [bw_field] shortcodes in your content or block based themes.
 
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and
-Markdown parsed.
+The field block supports all fields which have been registered to WordPress using register_post_meta().
+This includes fields defined using oik-fields as virtual fields.
+For a field to be rendered inside the block editor the post type must be registered to `show_in_rest` and support `custom-fields`.
+
 
 == Installation ==
+1. Upload the contents of the sb-field-block plugin to the `/wp-content/plugins/sb-field-block' directory
+1. Activate the sb-field-block plugin through the 'Plugins' menu in WordPress
 
-This section describes how to install the plugin and get it working.
+Note: sb-field-block is dependent upon the oik-fields and the oik base plugin.
 
-e.g.
-
-1. Upload the plugin files to the `/wp-content/plugins/sb-field-block` directory, or install the plugin through the WordPress plugins screen directly.
-1. Activate the plugin through the 'Plugins' screen in WordPress
 
 
 == Frequently Asked Questions ==
 
-= A question that someone might have =
+= Where is the FAQ? =
 
-An answer to that question.
+tbc
 
-= What about foo bar? =
+= How do I register my custom fields? =
 
-Answer to foo bar dilemma.
+tbc
+
+For examples see the latest development in the oik-events plugin.
+The plugin was prototyped with the oik-plugins plugin. 
+
+= What are the dependencies? =
+
+The block displays fields which have been registered using oik and oik-fields.
+
+= What field types are supported? =
+
+The plugin has been tested to display fields registered with the following types.
+
+- text
+- email
+- URL
+- virtual
+- noderef
+- sctext
+- select
+- numeric
+- textarea
+- date
+- time
+
+= Does it support ACF? =
+
+No. Consider using Field block for ACF Pro or Meta Field Block
+
+= Does it support taxonomies? =
+
+Don't know. I've not yet tried it.
+
 
 == Screenshots ==
 
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-2. This is the second screen shot
+1. sb-field-block in the block editor 
+2. sb-field-block on the front end
+3. Field block settings
+
+== Upgrade Notice ==
+Use this plugin to replace the [bw_fields] or [bw_field] shortcodes in your post content or block based themes.
 
 == Changelog ==
+= 0.0.1 = 
+* Changed: Reinstated for use by oik-events #6
+* Tested: With WordPress 6.7 and WordPress Multisite
+* Tested: With Gutenberg 19.6.2
+* Tested: With PHP 8.3
 
 = 0.0.0 =
-* Release
+* Added: Originally developed Mar-June 2021
 
-== Arbitrary section ==
 
-You may provide arbitrary sections, in the same format as the ones above. This may be of use for extremely complicated
-plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
-"installation." Arbitrary sections will be shown below the built-in sections outlined above.
+== Further reading ==
+If you want to read more about the oik plugins then please visit the
+
+[oik base plugin](https://www.oik-plugins.com/oik) 
+
