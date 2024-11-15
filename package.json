@@ -1,25 +1,23 @@
 {
 	"name": "sb-field-block",
-	"version": "0.0.0",
+	"version": "0.0.1",
 	"description": "Displays a post meta data field",
 	"author": "bobbingwide",
 	"license": "GPL 3.0",
-	"main": "build/index.js",
+	"main": "build/sb-field-block.js",
 	"scripts": {
 		"build": "wp-scripts build",
 		"format:js": "wp-scripts format-js",
 		"lint:css": "wp-scripts lint-style",
 		"lint:js": "wp-scripts lint-js",
 		"start": "wp-scripts start",
-		"packages-update": "wp-scripts packages-update"
-	},
-	"dependencies": {
-		"@wordpress/block-editor": "^5.3.0",
-		"@wordpress/blocks": "^8.0.0",
-		"@wordpress/data-controls": "^1.21.0",
-		"@wordpress/i18n": "^3.19.0"
+		"dev": "wp-scripts start",
+		"packages-update": "wp-scripts packages-update",
+		"makepot": "wp i18n make-pot . languages/sb-field-block.pot --exclude=node_modules,vendor,src",
+		"makejson": "wp i18n make-json languages --no-purge",
+		"l10n": "l10n sb-field-block"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^14.0.1"
+		"@wordpress/scripts": "^30.4.0"
 	}
 }
