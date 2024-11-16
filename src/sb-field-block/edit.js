@@ -12,7 +12,7 @@ import { __ } from '@wordpress/i18n';
  * @see https://developer.wordpress.org/block-editor/packages/packages-block-editor/#useBlockProps
  */
 import { useBlockProps, InspectorControls } from '@wordpress/block-editor';
-import { TextControl, PanelBody, PanelRow } from '@wordpress/components';
+import { TextControl, PanelBody, PanelRow, ToggleControl } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 import { useEntityProp } from '@wordpress/core-data';
 //import { apiFetch } from '@wordpress/data-controls';
@@ -82,6 +82,10 @@ export default function Edit( { setAttributes, attributes } ) {
 
 	}
 
+	const onChangeShowLabel = (value) => {
+		setAttributes( { showLabel: !attributes.showLabel });
+	}
+
 	return (
 		<Fragment>
 
@@ -94,6 +98,16 @@ export default function Edit( { setAttributes, attributes } ) {
 				<PanelBody>
 					<PanelRow>
 					<FieldSelect value={attributes.fieldName} onChange={onChangeFieldName} postType={attributes.postType} />
+					</PanelRow>
+				</PanelBody>
+				<PanelBody>
+					<PanelRow>
+						<ToggleControl
+							label={ __( 'Show label', 'sb-field-block' ) }
+							checked={ !! attributes.showLabel }
+							onChange={ onChangeShowLabel }
+
+						/>
 					</PanelRow>
 				</PanelBody>
 			</InspectorControls>

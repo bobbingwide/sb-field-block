@@ -62,17 +62,25 @@ export const DisplayMetaControl = ( props ) => {
 		);
 	}
 	else {
-
-		return (
-			<div className={"bw_metadata " + fieldName}>
-			<span className={"label " + fieldName}>
-				{description}
-			</span>
-				<span className="sep">{separator}
-			</span>
-				<span className="value">{fieldValue}
-			</span>
-			</div>
-		);
+		if ( props.attributes.showLabel ) {
+			return(
+				<div className={"bw_metadata " + fieldName}>
+					<span className={"label " + fieldName}>
+						{description}
+					</span>
+					<span className="sep">{separator}
+					</span>
+					<span className="value">{fieldValue}
+					</span>
+				</div>
+			);
+		} else {
+			return (
+				<div className={"bw_metadata " + fieldName}>
+					<span className="value">{fieldValue}
+					</span>
+				</div>
+			);
+		}
 	}
 }
