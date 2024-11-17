@@ -11,19 +11,20 @@ class SB_Field_Block {
 
 	private $post_type = null;
 	private $field_name = null;
-	private $label = null;
+	private $showlabel = null;
 
 	private $attributes = [];
 
 	function __construct( $attributes ) {
 		$this->setAttributes( $attributes );
+		$this->maybeDisableLabel();
 	}
 
 	function setAttributes( $attributes ) {
 		$this->attributes = $attributes;
 		$this->post_type = isset( $attributes[ 'postType' ] ) ?  $attributes['postType'] : null;
 		$this->field_name = isset( $attributes[ 'fieldName' ] ) ? $attributes['fieldName'] : null;
-		$this->label = isset(  $attributes[ 'label' ] ) ?  $attributes['label'] : null;
+		$this->showlabel = isset(  $attributes[ 'showLabel' ] ) ?  $attributes['showLabel'] : null;
 	}
 
 	/**
@@ -102,6 +103,22 @@ class SB_Field_Block {
 		}
 
 		return $html;
+	}
+
+	/**
+	 * Disables the display of the field's label.
+	 *
+	 * @TODO Implement in a less hacky manner.
+	 *
+	 * @return void
+	 */
+	function maybeDisableLabel() {
+		if ( !$this->showlabel) {
+			global $bw_fields;
+			bw_trace2( $bw_fields, 'fields before');
+			$bw_fields[ $this->field_name]['#args']['#label'] = false;
+			bw_trace2( $bw_fields, 'fields after');
+		}
 	}
 }
 /*
