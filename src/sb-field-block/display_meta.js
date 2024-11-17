@@ -57,8 +57,12 @@ export const DisplayMetaControl = ( props ) => {
 	var separator = ": ";
 
 	if ( needsRendering( fieldType ) ) {
+		// Use the postID passed in context to allow for use of the block in query loops.
+		// Note: We don't need the postType field, but it might come in handy for debugging.
+		// or for deciding if the field needs to be server side rendered.
+		let urlQueryArgs = { "post_id": props.context.postId };
 		return(
-		<ServerSideRender block="oiksb/sb-field-block" attributes={props.attributes}/>
+		<ServerSideRender block="oiksb/sb-field-block" attributes={props.attributes} urlQueryArgs={ urlQueryArgs }/>
 		);
 	}
 	else {
