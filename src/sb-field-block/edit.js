@@ -40,8 +40,11 @@ import './editor.scss';
  *
  * @return {WPElement} Element to render.
  */
-export default function Edit( { setAttributes, attributes } ) {
+export default function Edit( { setAttributes, attributes, context } ) {
 	const blockProps = useBlockProps();
+
+	console.log( context);
+
 
 	var postType = undefined;
 	postType = useSelect(
@@ -112,7 +115,7 @@ export default function Edit( { setAttributes, attributes } ) {
 				</PanelBody>
 			</InspectorControls>
 			<div { ...blockProps }>
-				<DisplayMetaControl postType={attributes.postType} fieldName={attributes.fieldName} fieldValue={metaFieldValue} attributes={attributes} />
+				<DisplayMetaControl postType={attributes.postType} fieldName={attributes.fieldName} fieldValue={metaFieldValue} attributes={attributes} context={context}/>
 
 			</div>
 		</Fragment>
