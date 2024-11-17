@@ -23,7 +23,7 @@
 		}
 
   	},
-	"usesContext": [ "postType", "postId", "queryId" ],
+	"usesContext": [ "postType", "postId" ],
 	"textdomain": "sb-field-block",
 	"editorScript": "file:../../build/sb-field-block.js",
 	"editorStyle": "file:./../build/sb-field-block.css",
