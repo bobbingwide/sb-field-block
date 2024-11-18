@@ -26,6 +26,6 @@
 	"usesContext": [ "postType", "postId" ],
 	"textdomain": "sb-field-block",
 	"editorScript": "file:../../build/sb-field-block.js",
-	"editorStyle": "file:./../build/sb-field-block.css",
+	"editorStyle": "file:../../build/sb-field-block.css",
 	"style": "file:../../build/style-sb-field-block.css"
 }
