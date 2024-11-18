@@ -53,6 +53,14 @@ function fieldOption( field ) {
 	return( { value: field.name, label: field['#title'] });
 }
 
+function defaultField( options ) {
+	if ( options.length ) {
+		return( options[0].value);
+	}
+	return null;
+
+}
+
 
 
 
@@ -66,6 +74,9 @@ export const FieldSelect = ( props ) => {
 	console.log( props );
 	console.log( "FS after");
 	var options = fieldOptions( content,props.postType );
+	if ( props.value === undefined ) {
+		props.onChange( defaultField( options ) );
+	}
 	return(
 	<SelectControl label="Field" value={props.value}
 				   options={options}
