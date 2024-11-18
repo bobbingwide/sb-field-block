@@ -71,7 +71,9 @@ class SB_Field_Block_Rest_Api
 				}
 			}
 			if ( count( $fields)) {
-				$all_fields[] =  ['postType' => $object_type, 'fields' => $fields];
+				$object = get_post_type_object( $object_type );
+				$label = $object->labels->name;
+				$all_fields[] =  ['postType' => $object_type, 'label' => $label, 'fields' => $fields];
 			}
 
 		}
