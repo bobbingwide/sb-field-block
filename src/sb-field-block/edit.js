@@ -43,16 +43,17 @@ import './editor.scss';
 export default function Edit( { setAttributes, attributes, context } ) {
 	const blockProps = useBlockProps();
 
-	console.log( context);
-
-
-	var postType = undefined;
+	var postType = context.postType;
+	/*
 	postType = useSelect(
 		(select) => select('core/editor').getCurrentPostType(),
 		[]
 	);
-	if ( attributes.postType ) {
-		postType = attributes.postType;
+	*/
+
+	if ( attributes.postType === undefined ) {
+		//postType = attributes.postType;
+		onChangePostType( context.postType );
 	} else {
 	  // We've already found a value using select.
 	}
@@ -62,7 +63,7 @@ export default function Edit( { setAttributes, attributes, context } ) {
 	// The post type needs to support `custom-fields`
 	var [meta, setMeta] = useEntityProp(
 		'postType',
-		postType,
+		context.postType,
 		'meta'
 	);
 	console.log( "Meta before");
@@ -82,7 +83,7 @@ export default function Edit( { setAttributes, attributes, context } ) {
 
 	function onChangePostType( newValue ) {
 		setAttributes({postType: newValue});
-
+		setAttributes( {fieldName: undefined });
 	}
 
 	const onChangeShowLabel = (value) => {
