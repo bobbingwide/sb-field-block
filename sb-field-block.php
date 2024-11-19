@@ -27,8 +27,8 @@ add_action( 'init', 'oiksb_sb_field_block_block_init' );
 add_action( 'rest_api_init', 'oiksb_sb_field_block_rest_api_init');
 
 function sb_field_block_dynamic_block( $attributes, $content, $block ) {
-	bw_trace2();
-	bw_backtrace();
+	//bw_trace2();
+	//bw_backtrace();
 	require_once 'libs/class-sb-field-block.php';
 	$fieldBlock = new SB_Field_Block( $attributes );
 	//$fieldBlock->setAttributes( $attributes );
