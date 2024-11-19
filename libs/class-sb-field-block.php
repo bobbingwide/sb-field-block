@@ -2,10 +2,9 @@
 
 /**
  * Class SB_Field_Block
- * @copyright (C) Copyright Bobbing Wide 2021
+ * @copyright (C) Copyright Bobbing Wide 2021, 2024
  * @package sb-field-block
  */
-
 
 class SB_Field_Block {
 
@@ -17,7 +16,6 @@ class SB_Field_Block {
 
 	function __construct( $attributes ) {
 		$this->setAttributes( $attributes );
-		$this->maybeDisableLabel();
 	}
 
 	function setAttributes( $attributes ) {
@@ -62,35 +60,40 @@ class SB_Field_Block {
 			}
 		}
 		return $oik_field;
-
 	}
 
 	/**
-	 * Renders an oik field using bw_field(s)
+	 * Renders an oik field using bw_field(s) logic.
+	 *
+	 * The field can be post metadata or a virtual field.
+	 *
+	 * @TODO Try with taxonomies as well?
 	 *
 	 * @return string
 	 */
 	function render_oik_field() {
-		//oik_require_lib( 'bw_fields');
-		oik_require( 'shortcodes/oik-fields.php', 'oik-fields');
 		if ( function_exists( "oik_is_block_renderer") ) {
 			oik_is_block_renderer( true );
 		}
-		$atts = ['fields' => $this->field_name];
-		$html = bw_metadata( $atts );
+		if ( $this->showlabel ) {
+			oik_require( 'shortcodes/oik-fields.php', 'oik-fields');
+			$atts = ['fields' => $this->field_name, 'id' => '.'];
+			$html=bw_metadata( $atts );
+		} else {
+			oik_require( 'shortcodes/oik-field.php', 'oik-fields');
+			$atts = ['fields' => $this->field_name];
+			$html = bw_field( $atts );
+		}
 		return $html;
-
 	}
 
 	/**
 	 * Renders the field.
 	 *
-	 *
 	 * @return string
 	 */
 	function render() {
 		if ( $this->field_name ) {
-
 			if ($this->is_oik_field()) {
 				$html = $this->render_oik_field();
 			} else {
@@ -101,35 +104,7 @@ class SB_Field_Block {
 		} else {
 			$html = '<!-- Field block. No field name -->';
 		}
-
 		return $html;
 	}
 
-	/**
-	 * Disables the display of the field's label.
-	 *
-	 * @TODO Implement in a less hacky manner.
-	 *
-	 * @return void
-	 */
-	function maybeDisableLabel() {
-		if ( !$this->showlabel) {
-			global $bw_fields;
-			bw_trace2( $bw_fields, 'fields before');
-			$bw_fields[ $this->field_name]['#args']['#label'] = false;
-			bw_trace2( $bw_fields, 'fields after');
-		}
-	}
 }
-/*
-$fieldName =
-$html = '<div class="seen-before">';
-$html .= '<span>';
-$html .= __( 'Seen before:', 'sb-field-block' );
-$html .= '</span>';
-$html .= '<span class="seen-before-value">';
-$times = _n( '%1$s time', '%1$s times', $seen_before, "sb-field-block" );
-$html .= sprintf( $times, number_format_i18n( $seen_before ) );
-$html .= '</div>';
-
-*/
