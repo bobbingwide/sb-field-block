@@ -33,6 +33,7 @@ function sb_field_block_dynamic_block( $attributes, $content, $block ) {
 	$fieldBlock = new SB_Field_Block( $attributes );
 	//$fieldBlock->setAttributes( $attributes );
 	$html = $fieldBlock->render();
+	$html = oik_server_side_wrapper( $attributes, $html );
 	return $html;
 }
 

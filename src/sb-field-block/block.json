@@ -8,7 +8,43 @@
 	"description": "Displays a post meta data field",
 	"supports": {
 		"html": false,
-	  	"className": false
+	  	"className": true,
+		"customClassName": true,
+		"align": true,
+		"typography": {
+			"fontSize": true,
+			"lineHeight": true,
+			"textAlign":  true,
+			"__experimentalTextDecoration": true,
+			"__experimentalFontStyle": true,
+			"__experimentalFontWeight": true,
+			"__experimentalLetterSpacing": true,
+			"__experimentalTextTransform": true
+		},
+		"color": {
+			"background": true,
+			"link": true,
+			"text": true
+
+		},
+		"spacing": {
+			"margin": true,
+			"padding": true,
+			"blockGap": true
+		},
+		"shadow": true,
+		"__experimentalBorder": {
+			"color": true,
+			"radius": true,
+			"style": true,
+			"width": true,
+			"__experimentalDefaultControls": {
+				"color": true,
+				"radius": true,
+				"style": true,
+				"width": true
+			}
+		}
 	},
   	"attributes": {
 		"postType": {
