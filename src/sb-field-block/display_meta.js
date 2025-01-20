@@ -56,7 +56,7 @@ export const DisplayMetaControl = ( props ) => {
 	var fieldType = getFieldType( postType, fieldName );
 	var separator = ": ";
 
-	if ( needsRendering( fieldType ) ) {
+	if ( fieldValue === 'Please set Field name' || needsRendering( fieldType ) ) {
 		// Use the postID passed in context to allow for use of the block in query loops.
 		// Note: We don't need the postType field, but it might come in handy for debugging.
 		// or for deciding if the field needs to be server side rendered.
