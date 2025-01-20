@@ -3,8 +3,8 @@
 * Contributors:      bobbingwide
 * Tags:              block
 * Requires at least: 6.6.0
-* Tested up to:      6.7.0
-* Stable tag:        0.1.0
+* Tested up to:      6.7.1
+* Stable tag:        0.1.1
 * Requires PHP:      8.2.0
 * License:           GPL 3.0
 * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
@@ -77,9 +77,19 @@ Don't know. I've not yet tried it.
 3. Field block settings
 
 ## Upgrade Notice 
+# 0.1.1 
+Improve support for not styling blocks which don't return any HTML on the front end.
+
+# 0.1.0 
 Use this plugin to replace the [bw_fields] and/or [bw_field] shortcodes in your post content or block based themes.
 
 ## Changelog 
+# 0.1.1 
+* Changed: Access data from the server when it's not available locally #3
+* Changed: Cater for fields with no value that have been themed as an empty span. #3
+* Tested: With WordPress 6.7.1 and WordPress Multisite
+* Tested: With PHP 8.3
+
 # 0.1.0 
 * Changed: Remove tracing from sb_field_block_dynamic_block() #8
 * Changed: Improve handling for showLabel toggle #7

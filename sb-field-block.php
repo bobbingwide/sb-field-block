@@ -2,14 +2,14 @@
 /**
  * Plugin Name:     Field block
  * Description:     Displays a post meta data field
- * Version:         0.1.0
+ * Version:         0.1.1
  * Author:          bobbingwide
  * License:         GPL 3.0
  * License URI:     https://www.gnu.org/licenses/gpl-2.0.html
  * Text Domain:     sb-field-block
  *
  * @package         oiksb
- * @copyright (C) Copyright Bobbing Wide 2021, 2024
+ * @copyright (C) Copyright Bobbing Wide 2021, 2024, 2025
  */
 
 /**
