@@ -80,9 +80,17 @@ class SB_Field_Block {
 			$atts = ['fields' => $this->field_name, 'id' => '.'];
 			$html=bw_metadata( $atts );
 		} else {
+
 			oik_require( 'shortcodes/oik-field.php', 'oik-fields');
 			$atts = ['fields' => $this->field_name];
+
 			$html = bw_field( $atts );
+		}
+		/**
+		 * Cater for fields with no value that have been themed as an empty span.
+		 */
+		if ( $html === '<span class="value"></span>') {
+			$html = null;
 		}
 		return $html;
 	}
